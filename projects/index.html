@@ -8,24 +8,264 @@
     <meta name="description"
         content="Explore the history of ARES Rocketry projects, from Big Blue to our latest hybrid engine rocket, Odyssey.">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="../styles.css">
-
-    <!-- Favicon -->
     <link rel="icon" href="../assets/logos/ARES LOGO-WHITE-BLUE.png" type="image/png">
+
     <style>
-        /* Projects Specific Styles */
-        .projects-header {
+        :root {
+            --color-accent: #ff6b22;
+            --color-accent-glow: rgba(255, 107, 34, 0.35);
+            --color-muted: rgba(10, 22, 51, 0.65);
+            --color-border-light: rgba(10, 22, 51, 0.12);
+        }
+
+        body {
+            background: #fff;
+        }
+
+        /* --- ODYSSEY FLAGSHIP: FULL-BLEED, STARTS RIGHT UNDER NAV --- */
+        .flagship {
+            padding: 0 0 80px;
+            margin: 0;
+            background: transparent;
+        }
+
+        .flagship .container {
+            max-width: none;
+            width: 100%;
+            padding: 0;
+        }
+
+        .flagship-hero {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 640px;
+            overflow: hidden;
+        }
+
+        .flagship-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flagship-hero-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0,0,0,0.15) 100%);
+            padding: 50px 6vw 70px;
+        }
+
+        /* title folded into the hero, replaces old .banner */
+        .flagship-eyebrow {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .eyebrow-title {
+            font-family: var(--font-heading);
+            font-size: 2.75rem;
+            color: #fff;
+        }
+
+        .eyebrow-sub {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .flagship-hero-bottom {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flagship-tag {
+            display: inline-block;
+            align-self: flex-start;
+            background: var(--color-accent);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .flagship-hero-overlay .project-title {
+            color: #fff;
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            margin: 0 0 20px;
+        }
+
+        .flagship-stats {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .flagship-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flagship-stat .value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+
+        .flagship-stat .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .flagship-body {
+            max-width: 1100px;
+            margin: 50px auto 0;
+            padding: 0 20px;
+        }
+
+        .flagship-body p {
+            color: var(--color-muted);
+            max-width: 820px;
+            margin: 0 auto 20px;
+        }
+
+        .flagship > .container > .project-gallery {
+            max-width: 1100px;
+            margin: 30px auto 0;
+            padding: 0 20px;
+        }
+
+        /* --- MISSION TIMELINE (light theme) --- */
+        .mission-timeline {
+            max-width: 1000px;
+            margin: 70px auto;
+            padding: 0 20px;
+        }
+
+        .mission-timeline h2 {
             text-align: center;
-            padding: 80px 20px 40px;
-            background: rgba(0, 15, 70, 0.3);
+            font-family: var(--font-heading);
+            margin-bottom: 50px;
+            color: var(--color-text);
+        }
+
+        .timeline-track {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-accent), var(--color-border-light));
+        }
+
+        .timeline-entry {
+            position: relative;
+            margin-bottom: 36px;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--color-white);
+            border: 3px solid var(--color-primary);
+        }
+
+        .timeline-entry.is-current::before {
+            border-color: var(--color-accent);
+            background: var(--color-accent);
+            box-shadow: 0 0 12px var(--color-accent-glow);
+        }
+
+        .timeline-entry .year {
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        .history-timeline-entry h3,
+        .timeline-entry h3 {
+            font-family: var(--font-heading);
+            margin: 4px 0 6px;
+            color: var(--color-primary);
+        }
+
+        .timeline-entry p {
+            margin: 0;
+            color: var(--color-muted);
+            max-width: 700px;
+        }
+
+        /* --- VEHICLE DIAGRAM PLACEHOLDER (light theme) --- */
+        .vehicle-diagram {
+            max-width: 900px;
+            margin: 70px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .vehicle-diagram h2 {
+            font-family: var(--font-heading);
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .vehicle-diagram .subnote {
+            color: var(--color-muted);
+            margin-bottom: 30px;
+        }
+
+        .diagram-placeholder {
+            border: 1px dashed var(--color-border-light);
+            border-radius: 12px;
+            padding: 80px 20px;
+            background: #F7F8FA;
+            color: var(--color-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- OTHER MISSIONS (light theme) --- */
+        .other-missions {
+            max-width: 1000px;
+            margin: 80px auto 0;
+            padding: 0 20px 80px;
+        }
+
+        .other-missions h2 {
+            text-align: center;
+            font-family: var(--font-heading);
+            margin-bottom: 30px;
+            color: var(--color-text);
         }
 
         .timeline-nav {
@@ -44,14 +284,15 @@
             left: 10%;
             width: 80%;
             height: 2px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--color-border-light);
             z-index: -1;
             top: 50%;
         }
 
         .timeline-item {
-            background: var(--color-background);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #fff;
+            border: 1px solid var(--color-border-light);
+            color: var(--color-text);
             padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
@@ -62,19 +303,19 @@
 
         .timeline-item:hover,
         .timeline-item.active {
-            background: var(--color-primary);
-            border-color: var(--color-primary);
-            box-shadow: 0 0 15px var(--color-primary-glow);
-            color: var(--color-white);
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            box-shadow: 0 0 15px var(--color-accent-glow);
+            color: #fff;
         }
 
         .project-display {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
+            background: #F7F8FA;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--color-border-light);
             min-height: 400px;
         }
 
@@ -87,6 +328,10 @@
             display: block;
         }
 
+        .project-content p {
+            color: var(--color-muted);
+        }
+
         .project-title {
             font-family: var(--font-heading);
             font-size: 2.5rem;
@@ -96,14 +341,13 @@
 
         .project-year {
             font-size: 1.2rem;
-            color: var(--color-primary);
+            color: var(--color-accent);
             margin-bottom: 20px;
             display: block;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* Project Hero with Integrated Title */
         .project-hero {
             position: relative;
             width: 100%;
@@ -143,43 +387,6 @@
             order: 1;
         }
 
-        .project-title-crop {
-            width: 600px;
-            height: 200px;
-            /* Fixed height to crop top and bottom */
-            overflow: hidden;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Project Title SVG (Florence) */
-        .project-title-svg {
-            width: 400px;
-            /* Fixed width, not scaled */
-            height: auto;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-        }
-
-        /* Hero section with only title, no background image */
-        .project-hero--title-only {
-            height: auto;
-            min-height: 200px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-background) 100%);
-        }
-
-        .project-hero--title-only .project-hero-overlay {
-            position: relative;
-            background: transparent;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 40px;
-        }
-
-        /* Project Image Gallery */
         .project-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -202,28 +409,31 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @media (max-width: 640px) {
+            .flagship-hero { height: 70vh; min-height: 480px; }
+            .flagship-hero-overlay { padding: 24px; }
+            .flagship-hero-overlay .project-title { font-size: 2.25rem; }
+            .eyebrow-title { font-size: 2rem; }
+            .flagship-stats { gap: 24px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .timeline-item, .project-gallery img { transition: none; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navigation -->
     <header class="header">
         <div class="header__container">
             <a href="/" class="logo">
                 <img src="../assets/ares-logo.png" alt="ARES Rocketry Logo" class="logo__img">
             </a>
-
             <button class="nav-toggle" aria-label="Toggle navigation"><span class="hamburger"></span></button>
             <nav class="nav">
                 <ul class="nav__list">
@@ -239,189 +449,251 @@
         </div>
     </header>
 
-    <main>
-        <section class="banner" style="padding-top: 120px; padding-bottom: 40px; text-align: center;">
+    <main class="projects-page">
+        <!-- HERO: full-bleed, starts right under nav, title folded in -->
+        <section class="flagship">
             <div class="container">
-                <h1 class="page-title">Mission History</h1>
-                <p>A timeline of our engineering journey.</p>
+                <div class="flagship-hero">
+                    <img src="../assets/thumbnails/Propulsion/propulsion_1.png" alt="Project Odyssey Hotfire">
+                    <div class="flagship-hero-overlay">
+                        <div class="flagship-eyebrow">
+                        </div>
+                        <div class="flagship-hero-bottom">
+                            <h2 class="project-title">Project Odyssey</h2>
+                            <span class="flagship-tag">Current Mission &middot; 2027 Target</span>
+                            <div class="flagship-stats">
+                                <div class="flagship-stat">
+                                    <span class="value">10,000 ft</span>
+                                    <span class="label">Target Apogee</span>
+                                </div>
+                                <div class="flagship-stat">
+                                    <span class="value">Genesis</span>
+                                    <span class="label">Hybrid Engine</span>
+                                </div>
+                                <div class="flagship-stat">
+                                    <span class="value">IREC 2027</span>
+                                    <span class="label">Competition Target</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flagship-body">
+                    <p>Odyssey is ARES' current project and represents the team's most ambitious undertaking to
+                        date. Odyssey will be ARES' first entirely student-researched and developed rocket,
+                        including a student-built hybrid rocket engine. Targeting a 10,000 ft apogee at the 2027
+                        International Rocket Engineering Competition, Odyssey is a huge leap forwards in the team's
+                        technological and operational abilities.</p>
+                    <p>Alongside the team's new hybrid rocket engine, named Genesis, ARES is developing multiple
+                        novel technologies such as side-hatch deployment, improved retractable rail guides and air
+                        brakes, and a comprehensive telemetry network with custom transfer protocol. ARES plans to
+                        host an initial test of Odyssey in late 2026 at the Australian Universities Rocket
+                        Competition in New South Wales.</p>
+                </div>
+
+                <div class="project-gallery">
+                    <img src="../assets/thumbnails/Propulsion/test_stand.jpeg" alt="Hybrid test stand">
+                    <img src="../assets/thumbnails/Propulsion/hotfire_side.jpeg" alt="Hotfire side view">
+                    <img src="../assets/thumbnails/Propulsion/DAQ_highres.jpeg" alt="Data acquisition system">
+                </div>
             </div>
         </section>
 
-        <section class="section projects">
-            <div class="container">
-                <div class="timeline-nav">
-                    <div class="timeline-item active" onclick="showProject('odyssey')">Odyssey</div>
-                    <div class="timeline-item" onclick="showProject('lemaire')">Lemaire</div>
-                    <div class="timeline-item" onclick="showProject('florence')">Florence</div>
-                    <div class="timeline-item" onclick="showProject('deimos')">Deimos</div>
-                    <div class="timeline-item" onclick="showProject('phobos')">Phobos</div>
-                    <div class="timeline-item" onclick="showProject('bigblue')">Big Blue</div>
+        <!-- VEHICLE DIAGRAM (placeholder for future 3D model) -->
+        <section class="vehicle-diagram">
+            <h2>Vehicle Overview</h2>
+            <p class="subnote">A full annotated diagram &mdash; and eventually a 3D model &mdash; of Odyssey is in
+                progress.</p>
+            <div class="diagram-placeholder">
+                Vehicle diagram coming soon
+            </div>
+        </section>
+
+        <!-- MISSION TIMELINE -->
+        <section class="mission-timeline">
+            <h2>Mission History</h2>
+            <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                <span style="font-family: var(--font-body); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-primary);">
+                    A timeline of our engineering journey
+                </span>
+            </div>
+            <div class="timeline-track">
+                <div class="timeline-entry">
+                    <span class="year">2022 &middot; Serpentine, VIC</span>
+                    <h3>Big Blue</h3>
+                    <p>ARES' first ever team rocket, built from PVC pipe, plywood, and fibreglass. Launched
+                        successfully on an L-class motor, paving the way for every competition rocket to follow.</p>
+                </div>
+                <div class="timeline-entry">
+                    <span class="year">2022 &middot; IREC</span>
+                    <h3>Phobos</h3>
+                    <p>ARES' first competition rocket. Reached 10,802 ft, placing 29th out of 98 teams, and won the
+                        Charles Hoult Award for Modelling and Simulation.</p>
+                </div>
+                <div class="timeline-entry">
+                    <span class="year">2023 &middot; IREC</span>
+                    <h3>Deimos</h3>
+                    <p>Introduced the team's first CNC machined parts and the student-built Hermes flight computer.
+                        Suffered a catastrophic failure at 7,000 ft, placing 74th out of 119.</p>
+                </div>
+                <div class="timeline-entry">
+                    <span class="year">2024 &middot; IREC</span>
+                    <h3>Florence</h3>
+                    <p>ARES' most successful rocket to date. First single-diameter design with dynamic air brakes,
+                        reaching 29,782 ft &mdash; 2nd in category, 4th overall out of 152 teams.</p>
+                </div>
+                <div class="timeline-entry">
+                    <span class="year">2025 &middot; IREC, Midland TX</span>
+                    <h3>Lemaire</h3>
+                    <p>Added retractable rail guides and a neural-network air brake controller, presented at a
+                        podium session. Reached 28,460 ft; placed 5th in category, 38th overall out of 145.</p>
+                </div>
+                <div class="timeline-entry is-current">
+                    <span class="year">2027 Target</span>
+                    <h3>Odyssey</h3>
+                    <p>ARES' first fully student-researched rocket, flying the custom Genesis hybrid engine.
+                        Currently in development, targeting 10,000 ft.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- OTHER MISSIONS -->
+        <section class="other-missions">
+            <h2>Our Missions</h2>
+            <div class="timeline-nav">
+                <div class="timeline-item active" onclick="showProject('lemaire')">Lemaire</div>
+                <div class="timeline-item" onclick="showProject('florence')">Florence</div>
+                <div class="timeline-item" onclick="showProject('deimos')">Deimos</div>
+                <div class="timeline-item" onclick="showProject('phobos')">Phobos</div>
+                <div class="timeline-item" onclick="showProject('bigblue')">Big Blue</div>
+            </div>
+
+            <div class="project-display">
+                <div id="lemaire" class="project-content active">
+                    <div class="project-hero">
+                        <img src="../assets/thumbnails/Teams Photos/Lemaire.JPG" alt="Project Lemaire Team">
+                        <div class="project-hero-overlay">
+                            <span class="project-year">IREC 2025</span>
+                            <h2 class="project-title">Project Lemaire</h2>
+                        </div>
+                    </div>
+                    <p>Lemaire was ARES' entry to the 2025 International Rocket Engineering Competition, in the
+                        30,000 ft commercial-off-the-shelf category. The 2025 competition was held for the first
+                        time in Midland, Texas, instead of the typical New Mexico launch location. Lemaire aimed to
+                        improve upon the novel systems designed during Florence's development.</p>
+                    <p>The team developed retractable rail guides leading to significant drag reduction and upgraded
+                        ARES' air brake control algorithm to use a neural network for look-up table data
+                        compression. This neural network was selected for presentation in a podium session at
+                        competition. Lemaire's project cycle also saw the beginnings of ARES' hybrid rocket program,
+                        which would see the development of a sub-scale hybrid rocket engine, test stand, and data
+                        acquisition system. Lemaire was launched to an altitude of 28,460 ft, with a recovery system
+                        failure leading to some airframe damage. Lemaire placed 5th in its category and 38th overall
+                        out of 145 teams.</p>
+                    <div class="project-gallery">
+                        <img src="../assets/thumbnails/lemaire_launch_team.JPG" alt="Lemaire launch team">
+                        <img src="../assets/thumbnails/Teams Photos/LemaireTeam.JPG" alt="Lemaire team photo">
+                        <img src="../assets/thumbnails/integrating_rail.jpeg" alt="Rocket integration">
+                    </div>
                 </div>
 
-                <div class="project-display">
-                    <!-- Odyssey -->
-                    <div id="odyssey" class="project-content active">
-                        <div class="project-hero">
-                            <img src="../assets/thumbnails/Propulsion/propulsion_1.png" alt="Project Odyssey Hotfire">
-                            <div class="project-hero-overlay">
-                                <span class="project-year">Current Mission (2027 Target)</span>
-                                <h2 class="project-title">Project Odyssey</h2>
-                            </div>
-                        </div>
-                        <p>Odyssey is ARES' current project and represents the team's most ambitious undertaking to
-                            date. Odyssey will be ARES' first entirely student-researched and developed rocket,
-                            including a student-built hybrid rocket engine. Targeting a 10,000 ft apogee at the 2027
-                            International Rocket Engineering Competition, Odyssey is a huge leap forwards in the team's
-                            technological and operational abilities.</p>
-                        <p>Alongside the team's new hybrid rocket engine, named Genesis, ARES is developing multiple
-                            novel technologies such as side-hatch deployment, improved retractable rail guides and air
-                            brakes, and a comprehensive telemetry network with custom transfer protocol. ARES plans to
-                            host an initial test of Odyssey in late 2026 at the Australian Universities Rocket
-                            Competition in New South Wales.</p>
-                        <div class="project-gallery">
-                            <img src="../assets/thumbnails/Propulsion/test_stand.jpeg" alt="Hybrid test stand">
-                            <img src="../assets/thumbnails/Propulsion/hotfire_side.jpeg" alt="Hotfire side view">
-                            <img src="../assets/thumbnails/Propulsion/DAQ_highres.jpeg" alt="Data acquisition system">
+                <div id="florence" class="project-content">
+                    <div class="project-hero">
+                        <img src="../assets/thumbnails/lemwhitesands.JPG" alt="Project Florence">
+                        <div class="project-hero-overlay">
+                            <span class="project-year">IREC 2024</span>
+                            <h2 class="project-title">Project Florence</h2>
                         </div>
                     </div>
+                    <p>Florence, ARES' entry to the 2024 Spaceport America Cup in the 30,000 ft
+                        commercial-off-the-shelf category, is the team's most successful rocket to date. Florence
+                        was ARES' first single-diameter rocket, a decision made to avoid structural failures akin to
+                        that of Deimos in 2023. This required an increased overall diameter which necessitated a
+                        single-separation recovery scheme, which ARES developed in conjunction with local Melbourne
+                        skydivers.</p>
+                    <p>Florence was also the team's first rocket featuring air brakes, a system which used
+                        model-predictive control to dynamically extend and retract control surfaces allowing precise
+                        apogee targeting. Florence launched to an altitude of 29,782 ft, placing ARES 2nd in the
+                        30,000 ft COTS category and 4th overall out of 152 teams.</p>
+                    <div class="project-gallery">
+                        <img src="../assets/thumbnails/florence_flight.jpeg" alt="Florence in flight">
+                        <img src="../assets/thumbnails/florence_awards.jpeg" alt="Florence awards ceremony">
+                        <img src="../assets/thumbnails/florence_team_Sac.jpeg" alt="Florence integration">
+                    </div>
+                </div>
 
-                    <!-- Lemaire -->
-                    <div id="lemaire" class="project-content">
-                        <div class="project-hero">
-                            <img src="../assets/thumbnails/Teams Photos/Lemaire.JPG" alt="Project Lemaire Team">
-                            <div class="project-hero-overlay">
-                                <span class="project-year">IREC 2025</span>
-                                <h2 class="project-title">Project Lemaire</h2>
-                            </div>
-                        </div>
-                        <p>Lemaire was ARES' entry to the 2025 International Rocket Engineering Competition, in the
-                            30,000 ft commercial-off-the-shelf category. The 2025 competition was held for the first
-                            time in Midland, Texas, instead of the typical New Mexico launch location. Lemaire aimed to
-                            improve upon the novel systems designed during Florence's development.</p>
-                        <p>The team developed retractable rail guides leading to significant drag reduction and upgraded
-                            ARES' air brake control algorithm to use a neural network for look-up table data
-                            compression. This neural network was selected for presentation in a podium session at
-                            competition. Lemaire's project cycle also saw the beginnings of ARES' hybrid rocket program,
-                            which would see the development of a sub-scale hybrid rocket engine, test stand, and data
-                            acquisition system. Lemaire was launched to an altitude of 28,460 ft, with a recovery system
-                            failure leading to some airframe damage. Lemaire placed 5th in its category and 38th overall
-                            out of 145 teams.</p>
-                        <div class="project-gallery">
-                            <img src="../assets/thumbnails/lemaire_launch_team.JPG" alt="Lemaire launch team">
-                            <img src="../assets/thumbnails/Teams Photos/LemaireTeam.JPG" alt="Lemaire team photo">
-                            <img src="../assets/thumbnails/integrating_rail.jpeg" alt="Rocket integration">
+                <div id="deimos" class="project-content">
+                    <div class="project-hero">
+                        <img src="../assets/thumbnails/Deimos/Deimos_dessert.jpeg" alt="Project Deimos in desert">
+                        <div class="project-hero-overlay">
+                            <span class="project-year">IREC 2023</span>
+                            <h2 class="project-title">Project Deimos</h2>
                         </div>
                     </div>
+                    <p>Deimos was ARES' first entry into the 30,000 ft commercial-off-the-shelf category at the 2023
+                        Spaceport America Cup (now International Rocket Engineering Competition). Deimos
+                        represented a big step forward in the team's technical abilities, seeing numerous
+                        student-designed systems such as a CO2 parachute ejection mechanism and the team's first
+                        CNC machined metal parts flying on the rocket.</p>
+                    <p>Deimos, like Phobos, featured an aerodynamic transition for increased altitude performance.
+                        Deimos was ARES' first rocket to fly the team's student-developed flight computer Hermes,
+                        which was chosen for presentation in a podium session at the competition. Deimos suffered a
+                        catastrophic failure at an altitude of 7,000 ft which caused its airframe to be destroyed.
+                        ARES placed 9th for design and build quality, but the team's flight performance score led to
+                        an overall rank of 74 out of 119 teams.</p>
+                    <div class="project-gallery">
+                        <img src="../assets/thumbnails/Deimos/deimos_team.JPG" alt="Deimos team">
+                        <img src="../assets/thumbnails/Deimos/Deimos_night_integration.jpeg" alt="Night integration">
+                    </div>
+                </div>
 
-                    <!-- Florence -->
-                    <div id="florence" class="project-content">
-                        <div class="project-hero">
-                            <img src="../assets/thumbnails/lemwhitesands.JPG" alt="Project Florence">
-                            <div class="project-hero-overlay">
-                                <span class="project-year">IREC 2024</span>
-                                <h2 class="project-title">Project Florence</h2>
-                            </div>
-                        </div>
-
-                        <p>
-                            Florence, ARES' entry to the 2024 Spaceport America Cup in the 30,000 ft
-                            commercial-off-the-shelf category, is the team's most successful rocket to date.
-                            Florence was ARES' first single-diameter rocket, a decision made to avoid structural
-                            failures akin to that of Deimos in 2023. This required an increased overall diameter
-                            which necessitated a single-separation recovery scheme, which ARES developed in
-                            conjunction with local Melbourne skydivers.
-                        </p>
-
-                        <p>
-                            Florence was also the team's first rocket featuring air brakes, a system which used
-                            model-predictive control to dynamically extend and retract control surfaces allowing
-                            precise apogee targeting. Florence launched to an altitude of 29,782 ft, placing ARES
-                            2nd in the 30,000 ft COTS category and 4th overall out of 152 teams.
-                        </p>
-
-                        <div class="project-gallery">
-                            <img src="../assets/thumbnails/florence_flight.jpeg" alt="Florence in flight">
-                            <img src="../assets/thumbnails/florence_awards.jpeg" alt="Florence awards ceremony">
-                            <img src="../assets/thumbnails/florence_team_Sac.jpeg" alt="Florence integration">
+                <div id="phobos" class="project-content">
+                    <div class="project-hero">
+                        <img src="../assets/thumbnails/SAC22.JPG" alt="Phobos at SAC 2022">
+                        <div class="project-hero-overlay">
+                            <span class="project-year">IREC 2022</span>
+                            <h2 class="project-title">Project Phobos</h2>
                         </div>
                     </div>
+                    <p>Phobos was ARES' first competition rocket, launched at the 2022 Spaceport America Cup (now
+                        International Rocket Engineering Competition) in the 10,000 ft commercial-off-the-shelf
+                        category. Phobos was unique in that it launched on an L2 motor instead of a typical L3, due
+                        to the team's lack of access to an L3 flyer of record at the time.</p>
+                    <p>Launching on a lower-power motor required the implementation of an aerodynamic transition to
+                        minimise drag while allowing a full-sized scientific payload. Phobos was an enormous
+                        challenge for ARES to tackle in its infancy, both in terms of engineering complexity and
+                        logistical challenges in transporting a rocket to the United States. The rocket's
+                        aerodynamic transition was chosen as a topic for a podium presentation at the competition.
+                        Phobos was launched successfully to an altitude of 10,802 ft but suffered a recovery failure
+                        leading to moderate damage of the airframe on landing. This placed ARES 29th out of 98
+                        teams, a commendable effort for a first competition. Additionally, ARES was awarded the
+                        Charles Hoult Award for Modelling and Simulation for the team's work analysing and
+                        manufacturing Phobos' aerodynamic transition.</p>
+                    <div class="project-gallery">
+                        <img src="../assets/thumbnails/Deimos/test_deimos.jpeg" alt="IREC Team photo">
+                        <img src="../assets/thumbnails/SAC.jpeg" alt="SAC launch">
+                    </div>
+                </div>
 
-                    <!-- Deimos -->
-                    <div id="deimos" class="project-content">
-                        <div class="project-hero">
-                            <img src="../assets/thumbnails/Deimos/Deimos_dessert.jpeg" alt="Project Deimos in desert">
-                            <div class="project-hero-overlay">
-                                <span class="project-year">IREC 2023</span>
-                                <h2 class="project-title">Project Deimos</h2>
-                            </div>
-                        </div>
-                        <p>Deimos was ARES' first entry into the 30,000 ft commercial-off-the-shelf category at the 2023
-                            Spaceport America Cup (now International Rocket Engineering Competition). Deimos represented
-                            a big step forward in the team's technical abilities, seeing numerous student-designed
-                            systems such as a CO2 parachute ejection mechanism and the team's first CNC machined metal
-                            parts flying on the rocket.</p>
-                        <p>Deimos, like Phobos, featured an aerodynamic transition for increased altitude performance.
-                            Deimos was ARES' first rocket to fly the team's student-developed flight computer Hermes,
-                            which was chosen for presentation in a podium session at the competition. Deimos suffered a
-                            catastrophic failure at an altitude of 7,000 ft which caused its airframe to be destroyed.
-                            ARES placed 9th for design and build quality, but the team's flight performance score led to
-                            an overall rank of 74 out of 119 teams.</p>
-                        <div class="project-gallery">
-                            <img src="../assets/thumbnails/Deimos/deimos_team.JPG" alt="Deimos team">
-                            <img src="../assets/thumbnails/Deimos/Deimos_night_integration.jpeg"
-                                alt="Night integration">
+                <div id="bigblue" class="project-content">
+                    <div class="project-hero">
+                        <img src="../assets/thumbnails/bigBlueLaunch.jpg" alt="Big Blue rocket">
+                        <div class="project-hero-overlay">
+                            <span class="project-year">Serpentine, Victoria 2022</span>
+                            <h2 class="project-title">Project Big Blue</h2>
                         </div>
                     </div>
-
-                    <!-- Phobos -->
-                    <div id="phobos" class="project-content">
-                        <div class="project-hero">
-                            <img src="../assets/thumbnails/SAC22.JPG" alt="Phobos at SAC 2022">
-                            <div class="project-hero-overlay">
-                                <span class="project-year">IREC 2022</span>
-                                <h2 class="project-title">Project Phobos</h2>
-                            </div>
-                        </div>
-                        <p>Phobos was ARES' first competition rocket, launched at the 2022 Spaceport America Cup (now
-                            International Rocket Engineering Competition) in the 10,000 ft commercial-off-the-shelf
-                            category. Phobos was unique in that it launched on an L2 motor instead of a typical L3, due
-                            to the team's lack of access to an L3 flyer of record at the time.</p>
-                        <p>Launching on a lower-power motor required the implementation of an aerodynamic transition to
-                            minimise drag while allowing a full-sized scientific payload. Phobos was an enormous
-                            challenge for ARES to tackle in its infancy, both in terms of engineering complexity and
-                            logistical challenges in transporting a rocket to the United States. The rocket's
-                            aerodynamic transition was chosen as a topic for a podium presentation at the competition.
-                            Phobos was launched successfully to an altitude of 10,802 ft but suffered a recovery failure
-                            leading to moderate damage of the airframe on landing. This placed ARES 29th out of 98
-                            teams, a commendable effort for a first competition. Additionally, ARES was awarded the
-                            Charles Hoult Award for Modelling and Simulation for the team's work analysing and
-                            manufacturing Phobos' aerodynamic transition.</p>
-                        <div class="project-gallery">
-                            <img src="../assets/thumbnails/Deimos/test_deimos.jpeg" alt="IREC Team photo">
-                            <img src="../assets/thumbnails/SAC.jpeg" alt="SAC launch">
-                        </div>
-                    </div>
-
-                    <!-- Big Blue -->
-                    <div id="bigblue" class="project-content">
-                        <div class="project-hero">
-                            <img src="../assets/thumbnails/bigBlueLaunch.jpg" alt="Big Blue rocket">
-                            <div class="project-hero-overlay">
-                                <span class="project-year">Serpentine, Victoria 2022</span>
-                                <h2 class="project-title">Project Big Blue</h2>
-                            </div>
-                        </div>
-                        <p>Big Blue was ARES' first ever team rocket, built and launched in early 2022. A tank of a
-                            rocket, Big Blue was constructed from Bunnings PVC pipe, plywood, and as much fibreglass as
-                            it could hold. The rocket was launched for the first time in March 2022 on an L-class motor
-                            at Serpentine, Victoria and performed nominally.</p>
-                        <p>Big Blue, whilst a short project, paved the way for Project Phobos and all of ARES'
-                            competitions rockets to follow. The rocket stands proudly on display next to its successors
-                            in ARES' workshop as a reminder of how far the team has come.</p>
-                        <div class="project-gallery">
-                            <img src="../assets/thumbnails/bigBlueFlight.jpg" alt="Big Blue in flight">
-                            <img src="../assets/thumbnails/bigBlueteam.jpg" alt="Big Blue team">
-                        </div>
+                    <p>Big Blue was ARES' first ever team rocket, built and launched in early 2022. A tank of a
+                        rocket, Big Blue was constructed from Bunnings PVC pipe, plywood, and as much fibreglass as
+                        it could hold. The rocket was launched for the first time in March 2022 on an L-class motor
+                        at Serpentine, Victoria and performed nominally.</p>
+                    <p>Big Blue, whilst a short project, paved the way for Project Phobos and all of ARES'
+                        competitions rockets to follow. The rocket stands proudly on display next to its successors
+                        in ARES' workshop as a reminder of how far the team has come.</p>
+                    <div class="project-gallery">
+                        <img src="../assets/thumbnails/bigBlueFlight.jpg" alt="Big Blue in flight">
+                        <img src="../assets/thumbnails/bigBlueteam.jpg" alt="Big Blue team">
                     </div>
                 </div>
             </div>
@@ -469,14 +741,9 @@
     <script src="../script.js"></script>
     <script>
         function showProject(id) {
-            // Hide all projects
             document.querySelectorAll('.project-content').forEach(p => p.classList.remove('active'));
-            // Remove active class from all nav items
             document.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active'));
-
-            // Show selected project
             document.getElementById(id).classList.add('active');
-            // Add active class to clicked nav item
             event.currentTarget.classList.add('active');
         }
     </script>

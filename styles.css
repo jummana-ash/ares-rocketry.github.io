@@ -28,6 +28,97 @@
     --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
+/* Sponsor Carousel */
+.sponsor-carousel {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--color-bg-light);
+    overflow: hidden;
+}
+
+.sponsor-carousel__label {
+    text-align: center;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+}
+
+.sponsor-carousel__viewport {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.sponsor-carousel__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: sponsor-scroll 40s linear infinite;
+}
+
+.sponsor-carousel__viewport:hover .sponsor-carousel__track {
+    animation-play-state: paused;
+}
+
+.sponsor-carousel__item {
+    flex: 0 0 auto;
+    width: 160px;
+    height: 90px;
+    margin: 0 var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sponsor-carousel__item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.sponsor-carousel__item img:hover {
+    transform: scale(1.06);
+}
+
+.sponsor-carousel__cta {
+    display: block;
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.sponsor-carousel__cta:hover {
+    color: var(--color-secondary);
+}
+
+@keyframes sponsor-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sponsor-carousel__track {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sponsor-carousel__item {
+        width: 120px;
+        height: 70px;
+        margin: 0 var(--spacing-md);
+    }
+}
+
 /* Reset & Global */
 * {
     box-sizing: border-box;
@@ -1291,5 +1382,18 @@ p {
 
     .timeline-image.right {
         left: 0%;
+    }
+
+    .flagship-tag {
+        display: inline-block;
+        background-color: transparent;
+        border: 2px solid #ff5722; /* Use your exact orange hex color if different */
+        color: var(--color-white);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 }
